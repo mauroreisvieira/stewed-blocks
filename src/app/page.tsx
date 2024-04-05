@@ -1,9 +1,9 @@
-import { Theme, Button } from "@stewed/react";
+"use client"
+
+import { Dashboard } from "./Dashboard";
 
 export default function Home() {
   return (
-    <Theme>
-    <Button>Button</Button>
-    </Theme>
+    <Dashboard />
   );
 }
