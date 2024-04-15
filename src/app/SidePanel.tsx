@@ -24,7 +24,7 @@ export function SidePanel(): React.ReactElement {
     const searchInput = useInput("");
     return (
         <Box gap="2xl" direction="column">
-            <Box direction="column" gap="lg" items="center" grow>
+            <Box direction="column" gap="lg" items="center">
                 <Avatar
                     name="Stewed Board"
                     skin="primary"

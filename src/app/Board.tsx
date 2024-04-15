@@ -108,6 +108,7 @@ export function Board(): React.ReactElement {
                         New board
                     </Button>
                 </Box>
+                <Separator skin="primary-border" />
                 <Box
                     wrap="wrap"
                     gap="2xl"
@@ -146,7 +147,6 @@ export function Board(): React.ReactElement {
                         </Box>
                     ))}
                 </Box>
-
                 <Card>
                     <Card.Header>
                         <Box items="baseline" justify="between" gap="2xl">
