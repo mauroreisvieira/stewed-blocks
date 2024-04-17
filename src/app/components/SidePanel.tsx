@@ -5,7 +5,7 @@ import {
     Box,
     TextField,
     ListBox,
-    Text as Text,
+    Text,
     Separator,
 } from "@stewed/react";
 // Icons
