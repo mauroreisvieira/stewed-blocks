@@ -11,10 +11,10 @@
     "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@stewed/hooks": "^0.2.1",
-    "@stewed/react": "^0.2.2",
-    "@stewed/utilities": "^0.3.0",
-    "next": "14.2.3",
+    "@stewed/hooks": "^0.3.0",
+    "@stewed/react": "^0.3.0",
+    "@stewed/utilities": "^0.3.1",
+    "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1"
@@ -23,7 +23,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@harmonix-hub/eslint": "^1.3.1",
+    "@harmonix-hub/eslint": "^1.3.5",
     "@harmonix-hub/prettier": "^1.3.1",
     "typescript": "^5"
   }

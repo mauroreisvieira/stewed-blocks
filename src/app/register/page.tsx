@@ -5,7 +5,7 @@ import { SignUp } from "./components/SignUp";
 
 export default function Register(): React.ReactElement {
   return (
-    <Layout>
+    <Layout screen="sm">
       <SignUp />
     </Layout>
   );

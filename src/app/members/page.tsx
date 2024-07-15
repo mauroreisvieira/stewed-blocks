@@ -1,12 +1,12 @@
 import React from "react";
 // UI Components
 import { Layout } from "../components/Layout";
-import { SignIn } from "./components/SignIn";
+import { Members } from "./components/Members";
 
 export default function Login(): React.ReactElement {
   return (
-    <Layout screen="sm">
-      <SignIn />
+    <Layout>
+      <Members />
     </Layout>
   );
 }

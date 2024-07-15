@@ -1,12 +1,12 @@
 import React from "react";
 // UI Components
 import { Layout } from "./components/Layout";
-import { Board } from "./dashboard/Board";
+import { Dashboard } from "./dashboard/Dashboard";
 
-export default function Dashboard(): React.ReactElement {
+export default function Default(): React.ReactElement {
   return (
-    <Layout displayNav>
-      <Board />
+    <Layout screen="2xl">
+      <Dashboard />
     </Layout>
   );
 }

@@ -43,7 +43,7 @@ export function SignIn(): React.ReactElement {
           <Box justify="between" gap="lg" wrap="wrap">
             <Checkbox>Keep me logged in</Checkbox>
             <Box justify="end" gap="md">
-              <Button appearance="outline">Create an account</Button>
+              <Button as="a" href="/register" appearance="outline">Create an account</Button>
               <Button>Sign in</Button>
             </Box>
           </Box>

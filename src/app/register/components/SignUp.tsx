@@ -14,16 +14,19 @@ import {
   Select,
 } from "@stewed/react";
 // Hooks
-import { useStateForm } from "@stewed/hooks";
+import { useSelect, useStateForm } from "@stewed/hooks";
+
+interface SignUpForm {
+  username: string;
+  email: string;
+  gender: "Prefer not to respond" | "Woman" | "Man";
+  password: string;
+}
 
 export function SignUp(): React.ReactElement {
   const [isOpen, setOpen] = useState(false);
 
-  const {
-    formData: { username, gender, email, password },
-    onFormChange,
-    onFormReset,
-  } = useStateForm({
+  const { formData, onFormChange, onFormReset } = useStateForm<SignUpForm>({
     initialValues: {
       username: "",
       email: "",
@@ -33,7 +36,7 @@ export function SignUp(): React.ReactElement {
     validators: ({ username, email, password }) => ({
       username: {
         condition: () => {
-          return username ? /^[a-zA-Z0-9]+$/.exec(username) !== null : true;
+          return username ? username.length > 3 && /^[a-zA-Z0-9]+$/.exec(username) !== null : true;
         },
         description: "Username can only contain letters or digits.",
       },
@@ -53,6 +56,8 @@ export function SignUp(): React.ReactElement {
     }),
   });
 
+  const notValidForm = Object.values(formData).some(({ valid }) => !valid);
+
   return (
     <>
       <Card>
@@ -70,22 +75,28 @@ export function SignUp(): React.ReactElement {
                     id="username"
                     type="text"
                     name="username"
-                    value={username.value}
+                    value={formData.username.value}
                     onChange={onFormChange}
-                    skin={username.valid ? "default" : "critical"}
+                    skin={formData.username.valid ? "default" : "critical"}
                     placeholder="Enter your username"
                   />
                 </FormField.Control>
                 <FormField.Description>
                   You can use letters, numbers, and periods.
                 </FormField.Description>
-                <FormField.Error hidden={username.valid}>{username.error}</FormField.Error>
+                <FormField.Error hidden={formData.username.valid}>
+                  {formData.username.error}
+                </FormField.Error>
               </FormField>
 
               <FormField>
                 <FormField.Label htmlFor="gender">Gender</FormField.Label>
                 <FormField.Control>
-                  <Select id="gender" value={gender.value} name="gender" onChange={onFormChange}>
+                  <Select
+                    id="gender"
+                    value={formData.gender.value}
+                    name="gender"
+                    onChange={onFormChange}>
                     <Select.Option value="Woman">Woman</Select.Option>
                     <Select.Option value="Man">Man</Select.Option>
                     <Select.Option value="Non-binary/non-conforming">
@@ -105,13 +116,15 @@ export function SignUp(): React.ReactElement {
                     id="email"
                     type="email"
                     name="email"
-                    value={email.value}
+                    value={formData.email.value}
                     onChange={onFormChange}
-                    skin={email.valid ? "default" : "critical"}
+                    skin={formData.email.valid ? "default" : "critical"}
                     placeholder="Enter your email"
                   />
                 </FormField.Control>
-                <FormField.Error hidden={email.valid}>{email.error}</FormField.Error>
+                <FormField.Error hidden={formData.email.valid}>
+                  {formData.email.error}
+                </FormField.Error>
               </FormField>
 
               <FormField>
@@ -121,16 +134,18 @@ export function SignUp(): React.ReactElement {
                     id="password"
                     type="password"
                     name="password"
-                    value={password.value}
+                    value={formData.password.value}
                     onChange={onFormChange}
-                    skin={password.valid ? "default" : "critical"}
+                    skin={formData.password.valid ? "default" : "critical"}
                     placeholder="Enter your password"
                   />
                 </FormField.Control>
                 <FormField.Description>
                   Use 8 or more characters with a mix of letters, numbers, and symbols.
                 </FormField.Description>
-                <FormField.Error hidden={password.valid}>{password.error}</FormField.Error>
+                <FormField.Error hidden={formData.password.valid}>
+                  {formData.password.error}
+                </FormField.Error>
               </FormField>
             </Box>
           </Box>
@@ -169,10 +184,11 @@ export function SignUp(): React.ReactElement {
             <Button skin="neutral" appearance="outline" onClick={(): void => onFormReset()}>
               Clean
             </Button>
-            <Button onClick={(): void => setOpen(true)}>Create an account</Button>
+            <Button disabled={notValidForm} onClick={(): void => setOpen(true)}>Create an account</Button>
           </Box>
         </Card.Footer>
       </Card>
+
       <Dialog open={isOpen} size="sm">
         <Dialog.Header>
           <Text as="h4">Are you ready to create your account?</Text>
@@ -192,7 +208,7 @@ export function SignUp(): React.ReactElement {
               onClick={(): void => setOpen(false)}>
               Cancel
             </Button>
-            <Button type="button" skin="success" onClick={(): void => setOpen(false)}>
+            <Button as="a" href="/" skin="success">
               Create Account
             </Button>
           </Box>

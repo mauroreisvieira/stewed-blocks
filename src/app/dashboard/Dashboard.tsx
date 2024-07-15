@@ -2,7 +2,7 @@
 
 import React from "react";
 // UI Components
-import { Avatar, Button, Card, Box, Text, Separator, Tag, Grid, Tooltip } from "@stewed/react";
+import { Avatar, Card, Box, Text, Separator, Tag, Grid, Tooltip } from "@stewed/react";
 
 const projects = [
   {
@@ -75,7 +75,7 @@ const projects = [
   },
 ];
 
-export function Board(): React.ReactElement {
+export function Dashboard(): React.ReactElement {
   return (
     <Box direction="column">
       <Box direction="column" grow>
@@ -93,7 +93,7 @@ export function Board(): React.ReactElement {
                     {title}
                   </Text>
                   <div>
-                    <Tag size="sm" appearance="soft" skin="primary">
+                    <Tag as="a" href="/members" size="sm" appearance="soft" skin="primary">
                       {category}
                     </Tag>
                   </div>
@@ -108,11 +108,7 @@ export function Board(): React.ReactElement {
                           {name}
                         </Text>
                       }>
-                      {(props) => (
-                        <div {...props}>
-                          <Avatar size="xs" name={name} skin="neutral" />
-                        </div>
-                      )}
+                      {(props) => <Avatar {...props} size="xs" name={name} skin="neutral" />}
                     </Tooltip>
                   ))}
                 </Avatar.Group>
