@@ -4,14 +4,14 @@ import React, { useMemo, useReducer } from "react";
 // UI Components
 import { Text, Container, Stack, Box, Accordion, Grid, Checkbox, Separator } from "@stewed/react";
 // Partials
-import { Products } from "../components/Products";
-import { Header } from "../components/Header";
+import { Products } from "./components/Products";
+import { Header } from "./components/Header";
 // Hooks
 import { useFetchImages } from "@/hooks/useFetchImages";
 // Icons
 import { HiMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 // Data
-import { FILTERS, PRODUCTS } from "../data";
+import { FILTERS, PRODUCTS } from "./data";
 
 interface Filters {
   tag: string[];

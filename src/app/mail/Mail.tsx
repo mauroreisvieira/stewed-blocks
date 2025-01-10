@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from "react";
 // UI Components
 import {
@@ -48,7 +50,7 @@ export function Mail(): React.ReactElement {
 
   return (
     <Theme
-      style={{ height: "90vh" }}
+      style={{ height: "100vh" }}
       tokens={{
         default: {
           color: {
@@ -64,7 +66,7 @@ export function Mail(): React.ReactElement {
       }}
     >
       <Container
-        screen="xl"
+        screen="full"
         alignment="center"
         style={{ height: "100%" }}
         padding={{ block: "2xl", inline: "2xl" }}

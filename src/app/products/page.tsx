@@ -1,7 +1,7 @@
 import { Layout } from "./components/Layout";
-import { Collections } from "./partials/Collections";
+import { Collections } from "./Collections";
 
-export default function Products() {
+export default function Page() {
   return (
     <Layout>
       <Collections />

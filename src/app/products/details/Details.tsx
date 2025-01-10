@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from "react";
 // UI Components
 import {
@@ -14,10 +16,10 @@ import {
   AspectRatio
 } from "@stewed/react";
 // Partials
-import { Products } from "./components/Products";
-import { Reviews } from "./components/Reviews";
+import { Products } from "../components/Products";
+import { Reviews } from "../components/Reviews";
 // Hooks
-import { useFetchImages } from "../../../../api/useFetchImages";
+import { useFetchImages } from "@/hooks/useFetchImages";
 import { useInput } from "@stewed/hooks";
 // Icons
 import { HiStar, HiMinusSm, HiOutlinePlusSm } from "react-icons/hi";
