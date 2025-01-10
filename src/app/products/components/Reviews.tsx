@@ -18,24 +18,24 @@ import { useFetchImages } from "@/hooks/useFetchImages";
 // Icons
 import { HiStar } from "react-icons/hi";
 // Data
-import { REVIEWS } from "../data";
+import { type Reviews } from "../data";
 
 interface ReviewsProps {
-  rate: number;
-  reviews: number;
+  rate?: number;
+  reviews: Reviews[];
 }
 
 export function Reviews({ rate, reviews }: ReviewsProps): React.ReactElement {
   const [open, setOpen] = useState(false);
 
-  const { data: profiles } = useFetchImages({ query: "profile", perPage: REVIEWS.length });
+  const { data: profiles } = useFetchImages({ query: "profile", perPage: reviews.length });
 
   const [hover, setHover] = useState(0);
 
   const reviewAnalysis = useMemo(() => {
-    const distribution = REVIEWS.reduce(
-      (acc, { reviewRate }) => {
-        acc[reviewRate] = (acc[reviewRate] || 0) + 1;
+    const distribution = reviews.reduce(
+      (acc, { rating }) => {
+        acc[rating] = (acc[rating] || 0) + 1;
 
         return acc;
       },
@@ -45,10 +45,10 @@ export function Reviews({ rate, reviews }: ReviewsProps): React.ReactElement {
     return Object.entries(distribution)
       .map(([rate, count]) => ({
         rate: Number(rate),
-        percentage: Math.round((count / REVIEWS.length) * 100)
+        percentage: Math.round((count / reviews.length) * 100)
       }))
       .reverse();
-  }, []);
+  }, [reviews]);
 
   return (
     <>
@@ -76,7 +76,7 @@ export function Reviews({ rate, reviews }: ReviewsProps): React.ReactElement {
                     </Stack>
 
                     <Text skin="neutral" size="xs">
-                      based on {reviews} reviews
+                      based on {reviews.length} reviews
                     </Text>
                   </Stack>
                 )}
@@ -118,7 +118,7 @@ export function Reviews({ rate, reviews }: ReviewsProps): React.ReactElement {
           </Grid.Item>
 
           <Grid.Item responsive={{ md: { colSpan: 3 } }}>
-            {REVIEWS.slice(0, 5).map(({ name, reviewRate, review }, idx) => (
+            {reviews.slice(0, 5).map(({ name, rating, review }, idx) => (
               <Box key={name}>
                 <Stack direction="column" gap="lg">
                   <Stack gap="md" items="center">
@@ -132,7 +132,7 @@ export function Reviews({ rate, reviews }: ReviewsProps): React.ReactElement {
                           <Text
                             key={crypto.randomUUID()}
                             as="div"
-                            skin={index + 1 <= Math.floor(reviewRate) ? "warning" : "neutral-faded"}
+                            skin={index + 1 <= Math.floor(rating) ? "warning" : "neutral-faded"}
                           >
                             <HiStar size={16} />
                           </Text>

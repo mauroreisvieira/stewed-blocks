@@ -5,6 +5,7 @@ import { Hoverable, MotionProps, Text, Card, Motion, Box, Stack, Button } from "
 import { IoEyeOutline, IoHeartOutline, IoStar } from "react-icons/io5";
 // Types
 import type { Product } from "../data";
+import { useFetchImages } from "@/hooks/useFetchImages";
 
 export interface ProductItemProps extends Product {
   image: string | undefined;
@@ -14,12 +15,14 @@ export interface ProductItemProps extends Product {
 export function ProductItem({
   id,
   name,
-  image,
   category,
   price,
-  rate,
+  rating,
+  discount,
   onQuickView
 }: ProductItemProps): React.ReactElement {
+  const { data } = useFetchImages({ query: name, perPage: 1 });
+
   return (
     <Hoverable>
       {({ status, isTouch }) => {
@@ -40,7 +43,7 @@ export function ProductItem({
                 <Card.Media
                   style={{ height: 200, overflow: "hidden" }}
                   image={{
-                    src: image,
+                    src: data?.results[0].urls.thumb,
                     loading: "eager",
                     className
                   }}
@@ -75,13 +78,29 @@ export function ProductItem({
               <Text size="xs" skin="neutral" space={{ y: "md" }}>
                 {category}
               </Text>
-              <Stack justify="between" items="center" gap="md">
-                <Text weight="semi-bold">
-                  {price.value}
-                  {price.currency}
-                </Text>
+              <Stack gap="sm" justify="between" grow>
+                {discount ? (
+                  <>
+                    <Stack gap="sm">
+                      <Text weight="light" variation="line-through" skin="neutral-faded">
+                        {price.value}
+                        {price.currency}
+                      </Text>
+                      <Text weight="semi-bold">
+                        {price.value - (price.value * discount) / 100}
+                        {price.currency}
+                      </Text>
+                    </Stack>
+                  </>
+                ) : (
+                  <Text weight="semi-bold">
+                    {price.value}
+                    {price.currency}
+                  </Text>
+                )}
+
                 <Stack items="center" justify="end" gap="xxs">
-                  <Text size="xs">{rate.toFixed(1)}</Text>
+                  <Text size="xs">{rating?.toFixed(1)}</Text>
                   <Text as="span" skin="warning">
                     <IoStar size={14} />
                   </Text>

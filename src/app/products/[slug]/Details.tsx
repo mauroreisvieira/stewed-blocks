@@ -13,6 +13,7 @@ import {
   Group,
   Button,
   TextField,
+  Carousel,
   AspectRatio
 } from "@stewed/react";
 // Partials
@@ -24,13 +25,41 @@ import { useInput } from "@stewed/hooks";
 // Icons
 import { HiStar, HiMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 // Data
-import { PRODUCTS, SIZES } from "../data";
+import { PRODUCTS, SIZES, REVIEWS } from "../data";
+import Image from "next/image";
 
-export function Details(): React.ReactElement {
-  const { data } = useFetchImages({ query: "fashion", perPage: 5 });
+interface DetailsProps {
+  slug: string;
+}
+
+export function Details({ slug }: DetailsProps): React.ReactElement {
+  const { data: images } = useFetchImages({ query: slug, perPage: 5 });
 
   // This prevents unnecessary recalculations when the component re-renders.
-  const product = useMemo(() => PRODUCTS.find(({ discount }) => discount), []);
+  const product = useMemo(() => PRODUCTS.find((product) => product.slug === slug), [slug]);
+
+  const reviews = useMemo(
+    () => REVIEWS.filter((review) => review.productsId === product?.id),
+    [product?.id]
+  );
+
+  const reviewAnalysis = useMemo(() => {
+    const distribution = reviews.reduce(
+      (acc, { rating }) => {
+        acc[product?.rating] = (acc[product.rating] || 0) + 1;
+
+        return acc;
+      },
+      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+    );
+
+    return Object.entries(distribution)
+      .map(([rate, count]) => ({
+        rate: Number(rate),
+        percentage: Math.round((count / reviews.length) * 100)
+      }))
+      .reverse();
+  }, [product.rating, reviews]);
 
   // State to manage the selected size of the product
   const [selectedSize, setSelectedSize] = useState("");
@@ -41,13 +70,12 @@ export function Details(): React.ReactElement {
   // Using a custom hook `useInput` to manage the input value for the quantity.
   const { value, setValue, onChange } = useInput<number>(1);
 
-  const productsList = useMemo(
+  const related = useMemo(
     () =>
-      PRODUCTS.map((product) => ({
-        ...product,
-        image: data?.results[product.id - 1]?.urls.small
-      })).slice(1, 5),
-    [data?.results]
+      PRODUCTS.filter(
+        ({ id, category }) => product && product.id !== id && category.includes(product.category)
+      ).slice(1, 5),
+    [product]
   );
 
   return (
@@ -55,9 +83,13 @@ export function Details(): React.ReactElement {
       <Container screen="xl" alignment="center" padding={{ block: "7xl", inline: "lg" }}>
         <Box as="section" space={{ y: "8xl" }}>
           <Grid gap="2xl" cols={1} responsive={{ md: { cols: 2 } }}>
-            <AspectRatio ratio="1:1" radius="md">
-              <img src={data?.results[0]?.urls.raw} alt={product?.name} />
-            </AspectRatio>
+            <Carousel>
+              {images?.results.map(({ urls, alt_description }) => (
+                <AspectRatio key={urls.raw} ratio="1:1" radius="md">
+                  <Image src={urls.raw} alt={alt_description} width={600} height={600} />
+                </AspectRatio>
+              ))}
+            </Carousel>
 
             <Stack direction="column">
               <Text as="h3" space={{ y: "md" }}>
@@ -85,7 +117,7 @@ export function Details(): React.ReactElement {
                   {product?.discount && <Tag size="xs">{product.discount}% of discount</Tag>}
                 </Stack>
 
-                {product?.rate && (
+                {product?.rating && (
                   <Stack items="center" gap="sm">
                     <Stack direction="row">
                       {Array.from({ length: 5 }).map((_, index) => (
@@ -93,7 +125,9 @@ export function Details(): React.ReactElement {
                           key={crypto.randomUUID()}
                           as="div"
                           skin={
-                            index + 1 <= Math.floor(product?.rate) ? "warning" : "neutral-faded"
+                            index + 1 <= Math.floor(product.rating)
+                              ? "warning"
+                              : "neutral-faded"
                           }
                         >
                           <HiStar size={24} />
@@ -102,7 +136,7 @@ export function Details(): React.ReactElement {
                     </Stack>
 
                     <Text as="a" href="/" skin="neutral" size="xs">
-                      ({product?.reviews} reviews)
+                      ({reviews.length} reviews)
                     </Text>
                   </Stack>
                 )}
@@ -224,17 +258,19 @@ export function Details(): React.ReactElement {
           </Grid>
         </Box>
 
-        <Box as="section">
-          <Text size="lg" weight="semi-bold" space={{ y: "xs" }}>
-            You May Also Like
-          </Text>
-          <Text size="sm" skin="neutral" space={{ y: "2xl" }}>
-            Browse similar products to the ones you're viewing
-          </Text>
-          <Products data={productsList} />
-        </Box>
+        {!!related.length && (
+          <Box as="section">
+            <Text size="lg" weight="semi-bold" space={{ y: "xs" }}>
+              You May Also Like
+            </Text>
+            <Text size="sm" skin="neutral" space={{ y: "2xl" }}>
+              {"Browse similar products to the ones you're viewing"}
+            </Text>
+            <Products data={related} />
+          </Box>
+        )}
 
-        {product && <Reviews rate={product?.rate} reviews={product?.reviews} />}
+        {!!reviews.length && <Reviews rate={product?.rating} reviews={reviews} />}
       </Container>
     </Box>
   );

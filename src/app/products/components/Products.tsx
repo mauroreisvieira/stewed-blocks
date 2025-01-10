@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+// Next
+import Link from "next/link";
 // UI Components
 import { Theme, Box, Grid, Stack, Text, useTheme } from "@stewed/react";
 // Partials
@@ -36,7 +38,9 @@ export function Products({ data }: ProductsProps): React.ReactElement {
             gap="xl"
           >
             {data.map((product) => (
-              <ProductItem key={product.id} {...product} onQuickView={setId} />
+              <Link key={product.id} href={`/products/${product.slug}`}>
+                <ProductItem {...product} onQuickView={setId} />
+              </Link>
             ))}
           </Grid>
         ) : (
