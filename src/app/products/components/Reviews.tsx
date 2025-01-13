@@ -33,21 +33,31 @@ export function Reviews({ rate, reviews }: ReviewsProps): React.ReactElement {
   const [hover, setHover] = useState(0);
 
   const reviewAnalysis = useMemo(() => {
-    const distribution = reviews.reduce(
-      (acc, { rating }) => {
-        acc[rating] = (acc[rating] || 0) + 1;
+    if (!reviews || reviews.length === 0) {
+      // Handle no reviews scenario
+      return Array.from({ length: 5 }, (_, index) => ({
+        rate: 5 - index, // Rates from 5 to 1
+        percentage: 0
+      }));
+    }
 
-        return acc;
-      },
-      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
-    );
+    const totalReviews = reviews.length;
+    const rateDistribution = new Map<number, number>();
 
-    return Object.entries(distribution)
-      .map(([rate, count]) => ({
-        rate: Number(rate),
-        percentage: Math.round((count / reviews.length) * 100)
-      }))
-      .reverse();
+    // Calculate distribution
+    reviews.forEach(({ rating }) => {
+      rateDistribution.set(rating, (rateDistribution.get(rating) || 0) + 1);
+    });
+
+    // Map the distribution to percentages and fill missing rates
+    return Array.from({ length: 5 }, (_, index) => {
+      const rate = 5 - index; // Rates from 5 to 1
+      const count = rateDistribution.get(rate) || 0;
+      return {
+        rate,
+        percentage: Math.round((count / totalReviews) * 100)
+      };
+    });
   }, [reviews]);
 
   return (

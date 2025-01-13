@@ -123,14 +123,21 @@ export const REVIEWS: Reviews[] = [
 export const PRODUCTS: Product[] = [
   {
     id: 1,
-    name: "Performance Fitness Dress",
-    slug: "performance-fitness-dress",
-    category: "Dresses",
-    color: ["Black", "Gray"],
+    name: "Sport Lisboa Benfica 2024/2025 Jersey",
+    slug: "sport-lisboa-benfica",
+    thumb: "/jersey-soccer/liga-portugal/benfica/1.webp",
+    images: [
+      "/jersey-soccer/liga-portugal/benfica/1.webp",
+      "/jersey-soccer/liga-portugal/benfica/2.webp",
+      "/jersey-soccer/liga-portugal/benfica/3.webp",
+      "/jersey-soccer/liga-portugal/benfica/4.webp"
+    ],
+    brand: "Adidas",
+    color: ["Red", "Black"],
     description:
-      "Stay active in style with the Performance Fitness Dress, designed for high mobility and comfort. Made with moisture-wicking fabric, this dress keeps you cool and dry during workouts while offering a sleek, flattering silhouette.",
-    tag: "Activewear",
-    price: { value: 120.0, currency: "€" },
+      "Show your passion for Sport Lisboa Benfica with this premium 2024/2025 Adidas jersey. Crafted with lightweight, sweat-wicking fabric for optimal comfort, it’s perfect for both match days and casual outings. The bold red and black design showcases your team pride in style.",
+    tag: "Liga Portugal",
+    price: { value: 120.0, currency: "€", discount: 20.0 }, // Discount of 20%
     sales: 500,
     stock: 100,
     sizes: ["XS", "S", "M", "L"],
@@ -138,14 +145,21 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 2,
-    name: "Flowy Training Shorts",
-    slug: "flowy-training-shorts",
-    category: "Shorts",
-    color: ["Blue", "White"],
+    name: "Sporting Clube Portugal 2024/2025 Jersey",
+    slug: "sporting-clube-portugal",
+    brand: "Nike",
+    color: ["Green", "White"],
+    thumb: "/jersey-soccer/liga-portugal/sporting/1.webp",
+    images: [
+      "/jersey-soccer/liga-portugal/sporting/1.webp",
+      "/jersey-soccer/liga-portugal/sporting/2.webp",
+      "/jersey-soccer/liga-portugal/sporting/3.webp",
+      "/jersey-soccer/liga-portugal/sporting/4.webp"
+    ],
     description:
-      "Upgrade your workout wardrobe with the Flowy Training Shorts. Crafted from breathable and stretchable fabric, these shorts are perfect for intense training or relaxed exercises.",
-    tag: "Athletic Shorts",
-    price: { value: 40.0, currency: "€" },
+      "Celebrate Sporting Clube Portugal's 2024/2025 season with this stunning Nike jersey. Its iconic green and white stripes are enhanced with advanced Dri-FIT technology to keep you cool and comfortable throughout the game or during casual wear.",
+    tag: "Liga Portugal",
+    price: { value: 90.0, currency: "€", discount: 15.0 }, // Discount of 15%
     sales: 300,
     stock: 150,
     sizes: ["S", "M", "L", "XL"],
@@ -153,219 +167,214 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 3,
-    name: "Athleisure Oversized Hoodie",
-    slug: "athleisure-oversized-hoodie",
-    category: "Oversized Wear",
-    color: ["Beige", "Navy"],
+    name: "Futebol Clube Porto 2024/2025 Jersey",
+    slug: "futebol-clube-porto",
+    brand: "New Balance",
+    color: ["Blue", "Yellow"],
+    thumb: "/jersey-soccer/liga-portugal/porto/1.webp",
+    images: [
+      "/jersey-soccer/liga-portugal/porto/1.webp",
+      "/jersey-soccer/liga-portugal/porto/2.webp",
+      "/jersey-soccer/liga-portugal/porto/3.webp",
+      "/jersey-soccer/liga-portugal/porto/4.webp"
+    ],
     description:
-      "Stay cozy with the Athleisure Oversized Hoodie. Made from soft, warm fabric, it’s perfect for layering after workouts or lounging at home. The oversized fit ensures maximum comfort.",
-    tag: "Oversized Wear",
-    price: { value: 70.0, currency: "€" },
-    sales: 200,
+      "Support Futebol Clube Porto with this bold 2024/2025 New Balance jersey. Featuring a striking blue and yellow design, this jersey is built with moisture-wicking fabric for maximum comfort and performance on and off the pitch.",
+    tag: "Liga Portugal",
+    price: { value: 85.0, currency: "€", discount: 10.0 }, // Discount of 10%
+    sales: 400,
     stock: 120,
-    sizes: ["One Size"],
-    rating: 4.8
+    sizes: ["S", "M", "L", "XL"],
+    rating: 4.6
   },
   {
     id: 4,
-    name: "Silk Training T-Shirt",
-    slug: "silk-training-t-shirt",
-    category: "T-Shirts",
-    color: ["Pink", "Black"],
+    name: "Real Madrid Club de Fútbol 2024/2025 Jersey",
+    slug: "real-madrid-club-de-fútbol",
+    brand: "Adidas",
+    color: ["White"],
+    thumb: "/jersey-soccer/la-liga/real-madrid/1.webp",
+    images: [
+      "/jersey-soccer/la-liga/real-madrid/1.webp",
+      "/jersey-soccer/la-liga/real-madrid/2.webp",
+      "/jersey-soccer/la-liga/real-madrid/3.webp"
+    ],
     description:
-      "The Silk Training T-Shirt offers a luxurious twist on athletic wear. Its soft, breathable silk-blend fabric provides unmatched comfort and elegance during workouts or casual outings.",
-    tag: "Luxury Activewear",
-    price: { value: 50.0, currency: "€" },
-    sales: 450,
-    stock: 90,
-    sizes: ["S", "M", "L"],
-    rating: 4.6
-  },
-  {
-    id: 5,
-    name: "Lightweight Fitness Sneakers",
-    slug: "lightweight-fitness-sneakers",
-    category: "Sneakers",
-    color: ["White", "Black"],
-    description:
-      "Designed for agility and support, the Lightweight Fitness Sneakers are perfect for running, training, or everyday wear. Their breathable mesh upper and cushioned sole ensure all-day comfort.",
-    tag: "Athletic Shoes",
-    price: { value: 90.0, currency: "€" },
+      "Celebrate Real Madrid's legendary legacy with the 2024/2025 Adidas jersey. Its clean white design features subtle gold accents, perfect for showcasing your loyalty to the world's most successful football club.",
+    tag: "La Liga",
+    price: { value: 110.0, currency: "€", discount: 25.0 }, // Discount of 25%
     sales: 600,
-    stock: 75,
-    sizes: ["36", "38", "40", "42"],
-    rating: 4.9
-  },
-  {
-    id: 6,
-    name: "Compression Socks",
-    slug: "compression-socks",
-    category: "Socks",
-    color: ["Gray", "Navy"],
-    description:
-      "Boost circulation and reduce fatigue with Compression Socks. Designed for high-performance athletes, these socks provide comfort and support during intense workouts or long days.",
-    tag: "Performance Gear",
-    price: { value: 15.0, currency: "€" },
-    sales: 800,
-    stock: 200,
-    sizes: ["S", "M", "L"],
-    rating: 5
-  },
-  {
-    id: 7,
-    name: "Soft Knit Sweater",
-    slug: "soft-knit-sweater",
-    category: "Sweaters",
-    color: ["Green", "Beige"],
-    description:
-      "The Soft Knit Sweater is the perfect post-workout layer. Its lightweight knit fabric keeps you warm without adding bulk, making it ideal for cool-downs or casual wear.",
-    tag: "Cozy Activewear",
-    price: { value: 60.0, currency: "€" },
-    sales: 350,
-    stock: 85,
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.4
-  },
-  {
-    id: 8,
-    name: "Reflective Running Tights",
-    slug: "reflective-running-tights",
-    category: "Shorts",
-    color: ["Black", "Reflective Silver"],
-    description:
-      "Stay safe and stylish during night runs with Reflective Running Tights. Designed with high-visibility elements, they offer comfort, stretch, and support for all fitness activities.",
-    tag: "Athletic Bottoms",
-    price: { value: 50.0, currency: "€" },
-    sales: 400,
-    stock: 95,
-    sizes: ["S", "M", "L"],
-    rating: 4.7
-  },
-  {
-    id: 9,
-    name: "Seamless Training Tank Top",
-    slug: "seamless-training-tank-top",
-    category: "T-Shirts",
-    color: ["Coral", "White"],
-    description:
-      "Experience ultimate comfort with the Seamless Training Tank Top. Its lightweight, breathable material ensures unrestricted movement and a perfect fit during any workout.",
-    tag: "Training Essentials",
-    price: { value: 35.0, currency: "€" },
-    sales: 550,
-    stock: 120,
-    sizes: ["XS", "S", "M", "L"],
-    rating: 4.6
-  },
-  {
-    id: 10,
-    name: "High-Waisted Workout Leggings",
-    slug: "high-waisted-workout-leggings",
-    category: "Shorts",
-    color: ["Black", "Wine"],
-    description:
-      "The High-Waisted Workout Leggings provide support and style. With a compressive fit and moisture-wicking fabric, they’re perfect for high-intensity workouts or casual wear.",
-    tag: "Athletic Bottoms",
-    price: { value: 60.0, currency: "€" },
-    sales: 700,
     stock: 80,
     sizes: ["S", "M", "L", "XL"],
     rating: 4.8
   },
   {
-    id: 11,
-    name: "Breathable Fitness Cap",
-    slug: "breathable-fitness-cap",
-    category: "Shorts",
-    color: ["Navy", "Gray"],
+    id: 5,
+    name: "Real Sociedad de Fútbol 2024/2025 Jersey",
+    slug: "real-sociedad-de-fútbol",
+    brand: "Macron",
+    color: ["White", "Blue"],
+    thumb: "/jersey-soccer/la-liga/real-sociedad/1.webp",
+    images: [
+      "/jersey-soccer/la-liga/real-sociedad/1.webp",
+      "/jersey-soccer/la-liga/real-sociedad/2.webp"
+    ],
     description:
-      "Keep cool and protect yourself from the sun with the Breathable Fitness Cap. Designed with lightweight, moisture-wicking material, it’s perfect for outdoor workouts.",
-    tag: "Athletic Shorts",
-    price: { value: 20.0, currency: "€" },
-    sales: 400,
-    stock: 100,
-    sizes: ["One Size"],
+      "Support Real Sociedad in the 2024/2025 season with this vibrant Macron jersey. Featuring a blend of white and blue stripes, this jersey ensures comfort and style for die-hard fans.",
+    tag: "La Liga",
+    price: { value: 75.0, currency: "€", discount: 20.0 }, // Discount of 20%
+    sales: 250,
+    stock: 130,
+    sizes: ["S", "M", "L", "XL"],
     rating: 4.4
   },
   {
-    id: 12,
-    name: "Fleece-Lined Joggers",
-    slug: "fleece-lined-joggers",
-    category: "Sweaters",
-    color: ["Charcoal", "Olive"],
+    id: 6,
+    name: "Club Athletico Paranaense 2024/2025 Jersey",
+    slug: "club-athletico-paranaense",
+    brand: "Umbro",
+    color: ["Yellow"],
+    thumb: "/jersey-soccer/brasileirao/paranaense/1.webp",
+    images: [
+      "/jersey-soccer/brasileirao/paranaense/1.webp",
+      "/jersey-soccer/brasileirao/paranaense/2.webp"
+    ],
     description:
-      "Stay warm and comfortable in Fleece-Lined Joggers. Ideal for colder days, these joggers feature a soft interior lining and an adjustable waistband for a perfect fit.",
-    tag: "Cozy Activewear",
-    price: { value: 65.0, currency: "€" },
-    sales: 250,
+      "Stand out in the 2024/2025 season with this bold yellow Umbro jersey for Club Athletico Paranaense. Designed with breathable materials, it’s perfect for cheering on your team or casual outings.",
+    tag: "Brasileirão",
+    price: { value: 70.0, currency: "€", discount: 15.0 }, // Discount of 15%
+    sales: 180,
+    stock: 100,
+    sizes: ["S", "M", "L", "XL"],
+    rating: 4.3
+  },
+  {
+    id: 7,
+    name: "Paris Saint-Germain Football Club 2024/2025 Jersey",
+    slug: "paris-saint-germain-football-club",
+    brand: "Nike",
+    color: ["Blue", "White"],
+    thumb: "/jersey-soccer/ligue-1/psg/1.webp",
+    images: [
+      "/jersey-soccer/ligue-1/psg/1.webp",
+      "/jersey-soccer/ligue-1/psg/2.webp",
+      "/jersey-soccer/ligue-1/psg/3.webp",
+      "/jersey-soccer/ligue-1/psg/4.webp"
+    ],
+    description:
+      "Show your allegiance to PSG with this stylish 2024/2025 Nike jersey. The blue and white design features advanced AeroSwift technology for unmatched comfort and breathability.",
+    tag: "Ligue 1",
+    price: { value: 95.0, currency: "€", discount: 20.0 }, // Discount of 20%
+    sales: 450,
     stock: 90,
+    sizes: ["S", "M", "L", "XL"],
+    rating: 4.6
+  },
+  {
+    id: 8,
+    name: "Manchester City Football Club 2024/2025 Jersey",
+    slug: "manchester-city-football-club",
+    brand: "Puma",
+    color: ["Blue"],
+    thumb: "/jersey-soccer/premier-league/manchester-city/1.webp",
+    images: [
+      "/jersey-soccer/premier-league/manchester-city/1.webp",
+      "/jersey-soccer/premier-league/manchester-city/2.webp"
+    ],
+    description:
+      "Support Manchester City in their 2024/2025 campaign with this sleek Puma jersey. Featuring a minimalist blue design, it’s a must-have for fans and collectors.",
+    tag: "Premier League",
+    price: { value: 85.0, currency: "€", discount: 10.0 }, // Discount of 10%
+    sales: 350,
+    stock: 110,
     sizes: ["S", "M", "L", "XL"],
     rating: 4.5
   },
-{
-    id: 13,
-    name: "Seamless Yoga Leggings",
-    slug: "seamless-yoga-leggings",
-    category: "Leggings",
-    color: ["Lavender", "Black"],
+  {
+    id: 9,
+    name: "Liverpool FC 2024/2025 Jersey",
+    slug: "liverpool-fc",
+    brand: "Nike",
+    color: ["Red"],
+    thumb: "/jersey-soccer/premier-league/liverpool/1.webp",
+    images: [
+      "/jersey-soccer/premier-league/liverpool/1.webp",
+      "/jersey-soccer/premier-league/liverpool/2.webp"
+    ],
     description:
-      "Experience ultimate comfort with the Seamless Yoga Leggings. Designed for stretch and flexibility, they are perfect for yoga, Pilates, or lounging.",
-    tag: "Yoga Essentials",
-    price: { value: 55.0, currency: "€" },
-    sales: 480,
-    stock: 100,
-    sizes: ["XS", "S", "M", "L"],
+      "Show your support for Liverpool FC with the official 2024/2025 home jersey by Nike. Featuring Dri-FIT technology, this iconic red jersey keeps you comfortable and stylish, whether you're at Anfield or cheering from home.",
+    tag: "Premier League",
+    price: { value: 90.0, currency: "€", discount: 10.0 }, // Discount of 10%
+    sales: 500,
+    stock: 120,
+    sizes: ["S", "M", "L", "XL"],
     rating: 4.8
   },
   {
-    id: 14,
-    name: "High-Performance Compression Leggings",
-    slug: "high-performance-compression-leggings",
-    category: "Leggings",
-    color: ["Dark Gray", "Navy"],
+    id: 10,
+    name: "Manchester United 2024/2025 Jersey",
+    slug: "manchester-united",
+    brand: "Adidas",
+    color: ["Red", "Black"],
+    thumb: "/jersey-soccer/premier-league/manchester-united/1.webp",
+    images: [
+      "/jersey-soccer/premier-league/manchester-united/1.webp",
+      "/jersey-soccer/premier-league/manchester-united/2.webp",
+      "/jersey-soccer/premier-league/manchester-united/3.webp",
+      "/jersey-soccer/premier-league/manchester-united/4.webp"
+    ],
     description:
-      "Stay supported during intense workouts with High-Performance Compression Leggings. Designed to improve circulation and reduce muscle fatigue, they are a must-have for high-impact activities.",
-    tag: "Athletic Bottoms",
-    price: { value: 65.0, currency: "€" },
+      "Celebrate Manchester United's legacy with the official 2024/2025 home jersey by Adidas. Designed with HEAT.RDY technology, this sleek red and black jersey ensures maximum comfort during every match or training session.",
+    tag: "Premier League",
+    price: { value: 95.0, currency: "€", discount: 15.0 }, // Discount of 15%
     sales: 600,
-    stock: 85,
+    stock: 100,
     sizes: ["S", "M", "L", "XL"],
     rating: 4.7
   },
   {
-    id: 15,
-    name: "Sculpting Fitness Leggings",
-    slug: "sculpting-fitness-leggings",
-    category: "Leggings",
-    color: ["Wine Red", "Olive"],
+    id: 11,
+    name: "FC Bayern München 2024/2025 Jersey",
+    slug: "fc-bayern-munchen",
+    brand: "Adidas",
+    color: ["Red", "White"],
+    thumb: "/jersey-soccer/bundesliga/bayern/1.webp",
+    images: ["/jersey-soccer/bundesliga/bayern/1.webp", "/jersey-soccer/bundesliga/bayern/2.webp"],
     description:
-      "Achieve a sleek and sculpted look with Sculpting Fitness Leggings. Featuring a high-waist design and body-contouring fabric, these leggings provide comfort and style for any activity.",
-    tag: "Shaping Gear",
-    price: { value: 70.0, currency: "€" },
-    sales: 350,
-    stock: 75,
-    sizes: ["XS", "S", "M", "L"],
+      "Join FC Bayern fans worldwide with this stunning 2024/2025 home jersey by Adidas. Highlighting the club's traditional red and white colors, it features breathable fabric for unmatched comfort during game days.",
+    tag: "Bundesliga",
+    price: { value: 92.0, currency: "€", discount: 10.0 }, // Discount of 10%
+    sales: 450,
+    stock: 110,
+    sizes: ["S", "M", "L", "XL"],
     rating: 4.6
   },
   {
-    id: 16,
-    name: "Thermal Running Leggings",
-    slug: "thermal-running-leggings",
-    category: "Leggings",
-    color: ["Black", "Charcoal"],
+    id: 12,
+    name: "Inter Miami CF 2024/2025 Jersey",
+    slug: "inter-miami-cf",
+    brand: "Adidas",
+    color: ["Black", "Pink"],
+    thumb: "/jersey-soccer/mls/inter-miami/1.webp",
+    images: [
+      "/jersey-soccer/mls/inter-miami/1.webp",
+      "/jersey-soccer/mls/inter-miami/2.webp",
+      "/jersey-soccer/mls/inter-miami/3.webp"
+    ],
     description:
-      "Stay warm during winter runs with Thermal Running Leggings. Featuring a fleece-lined interior, these leggings provide insulation without compromising on flexibility or breathability.",
-    tag: "Cold-Weather Gear",
-    price: { value: 75.0, currency: "€" },
-    sales: 300,
-    stock: 65,
+      "Support Inter Miami CF in style with their 2024/2025 home jersey by Adidas. Featuring a bold black and pink design, this jersey combines aesthetics with comfort to honor the team's spirit.",
+    tag: "MLS",
+    price: { value: 88.0, currency: "€", discount: 5.0 }, // Discount of 5%
+    sales: 320,
+    stock: 140,
     sizes: ["S", "M", "L", "XL"],
-    rating: 4.5
+    rating: 4.4
   }
 ];
 
 export const SIZES = ["XXS", "XS", "S", "M", "L", "XL", "XXL"] as const;
 
-export const CATEGORIES = [...new Set(PRODUCTS.map((product) => product.category))];
+export const BRAND = [...new Set(PRODUCTS.map((product) => product.brand))];
 
 export const TAGS = [...new Set(PRODUCTS.map((product) => product.tag))];
 
@@ -378,9 +387,9 @@ export const FILTERS = [
     values: TAGS
   },
   {
-    name: "Category",
-    key: "category",
-    values: CATEGORIES
+    name: "Brand",
+    key: "brand",
+    values: BRAND
   },
   {
     name: "Color",
@@ -426,17 +435,19 @@ export interface Product {
   id: number;
   name: string;
   slug: string;
-  category: string;
+  thumb?: string;
+  images?: string[];
+  brand: string;
   color: string[];
   tag: string;
   description: string;
   price: {
     value: number;
     currency: string;
+    discount?: number;
   };
   sales: number;
   stock: number;
   sizes: string[];
-  discount?: number;
   rating: number;
 }

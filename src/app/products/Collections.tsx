@@ -5,7 +5,7 @@ import React, { useMemo, useReducer } from "react";
 import { Text, Container, Stack, Box, Accordion, Grid, Checkbox, Separator } from "@stewed/react";
 // Partials
 import { Products } from "./components/Products";
-import { Header } from "./components/Header";
+import { Banner } from "./components/Banner";
 // Hooks
 import { useFetchImages } from "@/hooks/useFetchImages";
 // Icons
@@ -15,7 +15,7 @@ import { FILTERS, PRODUCTS } from "./data";
 
 interface Filters {
   tag: string[];
-  category: string[];
+  brand: string[];
   color: string[];
 }
 
@@ -32,7 +32,7 @@ export function Collections(): React.ReactElement {
     (prev: Filters, next: Partial<Filters>) => {
       return { ...prev, ...next };
     },
-    { tag: [], category: [], color: [] }
+    { tag: [], brand: [], color: [] }
   );
 
   const [sort, setSort] = useReducer(
@@ -47,19 +47,19 @@ export function Collections(): React.ReactElement {
     const filteredProducts = PRODUCTS.map((product) => ({
       ...product,
       image: data?.results[product.id - 1]?.urls.small
-    })).filter(({ category, color, tag }) => {
+    })).filter(({ brand, color, tag }) => {
       // Check if the product matches the Tag filter (only if filters.tag is not empty)
       const matchesTag = filters.tag.length === 0 || filters.tag.includes(tag);
 
-      // Check if the product matches the Category filter (only if filters.category is not empty)
-      const matchesCategory = filters.category.length === 0 || filters.category.includes(category);
+      // Check if the product matches the brand filter (only if filters.brand is not empty)
+      const matchesBrand = filters.brand.length === 0 || filters.brand.includes(brand);
 
       // Check if the product matches the Color filter (only if filters.color is not empty)
       const matchesColor =
         filters.color.length === 0 || color.some((co) => filters.color.includes(co));
 
       // Return product only if it matches all selected filters
-      return matchesTag && matchesCategory && matchesColor;
+      return matchesTag && matchesBrand && matchesColor;
     });
 
     if (sort.price) {
@@ -84,7 +84,7 @@ export function Collections(): React.ReactElement {
             return b.sales - a.sales;
           case "best":
             // You could use the rate or another logic for "best" products
-            return b.rate - a.rate; // You can change this based on your logic
+            return b.rating - a.rating; // You can change this based on your logic
           default:
             return 0;
         }
@@ -92,11 +92,11 @@ export function Collections(): React.ReactElement {
     }
 
     return filteredProducts;
-  }, [data?.results, filters.category, filters.color, filters.tag, sort.popular, sort.price]);
+  }, [data?.results, filters.brand, filters.color, filters.tag, sort.popular, sort.price]);
 
   return (
     <Box>
-      <Header sort={sort} setSort={setSort} />
+      <Banner sort={sort} setSort={setSort} />
 
       <Container screen="xl" alignment="center" padding={{ block: "7xl", inline: "lg" }}>
         <Grid cols={4}>

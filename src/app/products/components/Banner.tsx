@@ -11,12 +11,12 @@ export interface Sort {
   popular: "most" | "best" | "newest" | undefined;
 }
 
-interface HeaderProps {
+interface BannerProps {
   sort: Sort;
   setSort: React.ActionDispatch<[next: Partial<Sort>]>;
 }
 
-export function Header({ sort, setSort }: HeaderProps): React.ReactElement {
+export function Banner({ sort, setSort }: BannerProps): React.ReactElement {
   return (
     <Box skin="neutral-faded" padding={{ block: "4xl" }}>
       <Container screen="xl" alignment="center" padding={{ block: "7xl", inline: "lg" }}>

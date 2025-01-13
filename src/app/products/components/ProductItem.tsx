@@ -5,24 +5,20 @@ import { Hoverable, MotionProps, Text, Card, Motion, Box, Stack, Button } from "
 import { IoEyeOutline, IoHeartOutline, IoStar } from "react-icons/io5";
 // Types
 import type { Product } from "../data";
-import { useFetchImages } from "@/hooks/useFetchImages";
 
 export interface ProductItemProps extends Product {
-  image: string | undefined;
   onQuickView?: (id: number) => void;
 }
 
 export function ProductItem({
   id,
   name,
-  category,
+  thumb,
+  brand,
   price,
   rating,
-  discount,
   onQuickView
 }: ProductItemProps): React.ReactElement {
-  const { data } = useFetchImages({ query: name, perPage: 1 });
-
   return (
     <Hoverable>
       {({ status, isTouch }) => {
@@ -43,7 +39,7 @@ export function ProductItem({
                 <Card.Media
                   style={{ height: 200, overflow: "hidden" }}
                   image={{
-                    src: data?.results[0].urls.thumb,
+                    src: thumb,
                     loading: "eager",
                     className
                   }}
@@ -76,10 +72,10 @@ export function ProductItem({
                 {name}
               </Text>
               <Text size="xs" skin="neutral" space={{ y: "md" }}>
-                {category}
+                {brand}
               </Text>
               <Stack gap="sm" justify="between" grow>
-                {discount ? (
+                {price.discount ? (
                   <>
                     <Stack gap="sm">
                       <Text weight="light" variation="line-through" skin="neutral-faded">
@@ -87,7 +83,7 @@ export function ProductItem({
                         {price.currency}
                       </Text>
                       <Text weight="semi-bold">
-                        {price.value - (price.value * discount) / 100}
+                        {price.value - (price.value * price.discount) / 100}
                         {price.currency}
                       </Text>
                     </Stack>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import Image from "next/image";
 // UI Components
 import {
   Text,
@@ -13,28 +14,23 @@ import {
   Group,
   Button,
   TextField,
-  Carousel,
-  AspectRatio
+  Carousel
 } from "@stewed/react";
 // Partials
 import { Products } from "../components/Products";
 import { Reviews } from "../components/Reviews";
 // Hooks
-import { useFetchImages } from "@/hooks/useFetchImages";
 import { useInput } from "@stewed/hooks";
 // Icons
 import { HiStar, HiMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 // Data
 import { PRODUCTS, SIZES, REVIEWS } from "../data";
-import Image from "next/image";
 
 interface DetailsProps {
   slug: string;
 }
 
 export function Details({ slug }: DetailsProps): React.ReactElement {
-  const { data: images } = useFetchImages({ query: slug, perPage: 5 });
-
   // This prevents unnecessary recalculations when the component re-renders.
   const product = useMemo(() => PRODUCTS.find((product) => product.slug === slug), [slug]);
 
@@ -42,24 +38,6 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
     () => REVIEWS.filter((review) => review.productsId === product?.id),
     [product?.id]
   );
-
-  const reviewAnalysis = useMemo(() => {
-    const distribution = reviews.reduce(
-      (acc, { rating }) => {
-        acc[product?.rating] = (acc[product.rating] || 0) + 1;
-
-        return acc;
-      },
-      { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
-    );
-
-    return Object.entries(distribution)
-      .map(([rate, count]) => ({
-        rate: Number(rate),
-        percentage: Math.round((count / reviews.length) * 100)
-      }))
-      .reverse();
-  }, [product.rating, reviews]);
 
   // State to manage the selected size of the product
   const [selectedSize, setSelectedSize] = useState("");
@@ -73,7 +51,7 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
   const related = useMemo(
     () =>
       PRODUCTS.filter(
-        ({ id, category }) => product && product.id !== id && category.includes(product.category)
+        ({ id, brand }) => product && product.id !== id && brand.includes(product.brand)
       ).slice(1, 5),
     [product]
   );
@@ -84,10 +62,8 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
         <Box as="section" space={{ y: "8xl" }}>
           <Grid gap="2xl" cols={1} responsive={{ md: { cols: 2 } }}>
             <Carousel>
-              {images?.results.map(({ urls, alt_description }) => (
-                <AspectRatio key={urls.raw} ratio="1:1" radius="md">
-                  <Image src={urls.raw} alt={alt_description} width={600} height={600} />
-                </AspectRatio>
+              {product?.images?.map((image) => (
+                <Image key={image} src={image} alt={product.name} width={600} height={600} />
               ))}
             </Carousel>
 
@@ -97,14 +73,14 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
               </Text>
 
               <Text size="sm" skin="neutral" space={{ y: "2xl" }}>
-                {product?.category} / {product?.tag}
+                {product?.brand} / {product?.tag}
               </Text>
 
               <Stack direction="column" gap="2xl">
                 <Stack gap="sm" grow>
-                  {product?.discount && (
+                  {product?.price.discount && (
                     <Text size="3xl" weight="light" variation="line-through" skin="neutral-faded">
-                      {(product.price.value * product?.discount) / 100}
+                      {(product.price.value * product?.price.discount) / 100}
                       {product.price.currency}
                     </Text>
                   )}
@@ -114,7 +90,7 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
                     {product?.price.currency}
                   </Text>
 
-                  {product?.discount && <Tag size="xs">{product.discount}% of discount</Tag>}
+                  {product?.price.discount && <Tag size="xs">{product.price.discount}% of discount</Tag>}
                 </Stack>
 
                 {product?.rating && (
@@ -125,9 +101,7 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
                           key={crypto.randomUUID()}
                           as="div"
                           skin={
-                            index + 1 <= Math.floor(product.rating)
-                              ? "warning"
-                              : "neutral-faded"
+                            index + 1 <= Math.floor(product.rating) ? "warning" : "neutral-faded"
                           }
                         >
                           <HiStar size={24} />

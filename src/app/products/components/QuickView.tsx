@@ -45,14 +45,14 @@ export function QuickView({ id, onClose }: QuickViewProps): React.ReactElement {
         </Text>
 
         <Text size="sm" skin="neutral" space={{ y: "2xl" }}>
-          {product?.category} / {product?.tag}
+          {product?.brand} / {product?.tag}
         </Text>
 
         <Stack direction="column" gap="2xl">
           <Stack gap="sm" grow>
-            {product?.discount && (
+            {product?.price.discount && (
               <Text size="3xl" weight="light" variation="line-through" skin="neutral-faded">
-                {(product.price.value * product?.discount) / 100}
+                {(product.price.value * product?.price.discount) / 100}
                 {product.price.currency}
               </Text>
             )}
@@ -62,17 +62,17 @@ export function QuickView({ id, onClose }: QuickViewProps): React.ReactElement {
               {product?.price.currency}
             </Text>
 
-            {product?.discount && <Tag size="xs">{product.discount}% of discount</Tag>}
+            {product?.price.discount && <Tag size="xs">{product.price.discount}% of discount</Tag>}
           </Stack>
 
-          {product?.rate && (
+          {product?.rating && (
             <Stack items="center" gap="sm">
               <Stack direction="row">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <Text
                     key={index}
                     as="div"
-                    skin={index + 1 <= Math.floor(product?.rate) ? "warning" : "neutral-faded"}
+                    skin={index + 1 <= Math.floor(product?.rating) ? "warning" : "neutral-faded"}
                   >
                     <HiStar size={24} />
                   </Text>
@@ -80,7 +80,7 @@ export function QuickView({ id, onClose }: QuickViewProps): React.ReactElement {
               </Stack>
 
               <Text as="a" href="/" skin="neutral" size="xs">
-                ({product?.reviews} reviews)
+                ({product?.rating} reviews)
               </Text>
             </Stack>
           )}
