@@ -12,8 +12,8 @@ import {
   AspectRatio,
   Skeleton
 } from "@stewed/react";
-// API
-import { useGetImages } from "../../../../../api/useGetImages";
+// Hooks
+import { useGetImages } from "../hooks/useGetImages";
 // Icons
 import { FaPlay } from "react-icons/fa";
 

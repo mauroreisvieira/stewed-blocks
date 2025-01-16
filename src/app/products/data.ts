@@ -123,7 +123,7 @@ export const REVIEWS: Reviews[] = [
 export const PRODUCTS: Product[] = [
   {
     id: 1,
-    name: "Sport Lisboa Benfica 2024/2025 Jersey",
+    name: "Sport Lisboa Benfica 2024/2025",
     slug: "sport-lisboa-benfica",
     thumb: "/jersey-soccer/liga-portugal/benfica/1.webp",
     images: [
@@ -135,9 +135,9 @@ export const PRODUCTS: Product[] = [
     brand: "Adidas",
     color: ["Red", "Black"],
     description:
-      "Show your passion for Sport Lisboa Benfica with this premium 2024/2025 Adidas jersey. Crafted with lightweight, sweat-wicking fabric for optimal comfort, it’s perfect for both match days and casual outings. The bold red and black design showcases your team pride in style.",
+      "Show your passion for Sport Lisboa Benfica with this premium 2024/2025 Adidas jersey.\nCrafted with lightweight, sweat-wicking fabric for optimal comfort, it’s perfect for both match days and casual outings.\n\nThe bold red and black design showcases your team pride in style.",
     tag: "Liga Portugal",
-    price: { value: 120.0, currency: "€", discount: 20.0 }, // Discount of 20%
+    price: { value: 120.0, currency: "€", discount: 0 },
     sales: 500,
     stock: 100,
     sizes: ["XS", "S", "M", "L"],
@@ -145,7 +145,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 2,
-    name: "Sporting Clube Portugal 2024/2025 Jersey",
+    name: "Sporting Clube Portugal 2024/2025",
     slug: "sporting-clube-portugal",
     brand: "Nike",
     color: ["Green", "White"],
@@ -167,7 +167,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 3,
-    name: "Futebol Clube Porto 2024/2025 Jersey",
+    name: "Futebol Clube Porto 2024/2025",
     slug: "futebol-clube-porto",
     brand: "New Balance",
     color: ["Blue", "Yellow"],
@@ -189,7 +189,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 4,
-    name: "Real Madrid Club de Fútbol 2024/2025 Jersey",
+    name: "Real Madrid Club de Fútbol 2024/2025",
     slug: "real-madrid-club-de-fútbol",
     brand: "Adidas",
     color: ["White"],
@@ -210,7 +210,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 5,
-    name: "Real Sociedad de Fútbol 2024/2025 Jersey",
+    name: "Real Sociedad de Fútbol 2024/2025",
     slug: "real-sociedad-de-fútbol",
     brand: "Macron",
     color: ["White", "Blue"],
@@ -230,7 +230,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 6,
-    name: "Club Athletico Paranaense 2024/2025 Jersey",
+    name: "Club Athletico Paranaense 2024/2025",
     slug: "club-athletico-paranaense",
     brand: "Umbro",
     color: ["Yellow"],
@@ -250,7 +250,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 7,
-    name: "Paris Saint-Germain Football Club 2024/2025 Jersey",
+    name: "Paris Saint-Germain Football Club 2024/2025",
     slug: "paris-saint-germain-football-club",
     brand: "Nike",
     color: ["Blue", "White"],
@@ -272,7 +272,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 8,
-    name: "Manchester City Football Club 2024/2025 Jersey",
+    name: "Manchester City Football Club 2024/2025",
     slug: "manchester-city-football-club",
     brand: "Puma",
     color: ["Blue"],
@@ -284,7 +284,7 @@ export const PRODUCTS: Product[] = [
     description:
       "Support Manchester City in their 2024/2025 campaign with this sleek Puma jersey. Featuring a minimalist blue design, it’s a must-have for fans and collectors.",
     tag: "Premier League",
-    price: { value: 85.0, currency: "€", discount: 10.0 }, // Discount of 10%
+    price: { value: 85.0, currency: "€", discount: 0 },
     sales: 350,
     stock: 110,
     sizes: ["S", "M", "L", "XL"],
@@ -292,7 +292,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 9,
-    name: "Liverpool FC 2024/2025 Jersey",
+    name: "Liverpool FC 2024/2025",
     slug: "liverpool-fc",
     brand: "Nike",
     color: ["Red"],
@@ -312,7 +312,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 10,
-    name: "Manchester United 2024/2025 Jersey",
+    name: "Manchester United 2024/2025",
     slug: "manchester-united",
     brand: "Adidas",
     color: ["Red", "Black"],
@@ -334,14 +334,14 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 11,
-    name: "FC Bayern München 2024/2025 Jersey",
+    name: "FC Bayern München 2024/2025",
     slug: "fc-bayern-munchen",
     brand: "Adidas",
     color: ["Red", "White"],
     thumb: "/jersey-soccer/bundesliga/bayern/1.webp",
     images: ["/jersey-soccer/bundesliga/bayern/1.webp", "/jersey-soccer/bundesliga/bayern/2.webp"],
     description:
-      "Join FC Bayern fans worldwide with this stunning 2024/2025 home jersey by Adidas. Highlighting the club's traditional red and white colors, it features breathable fabric for unmatched comfort during game days.",
+      "Join FC Bayern fans worldwide with this stunning 2024/2025 home jersey by Adidas.\nHighlighting the club's traditional red and white colors, it features breathable fabric for unmatched comfort during game days.",
     tag: "Bundesliga",
     price: { value: 92.0, currency: "€", discount: 10.0 }, // Discount of 10%
     sales: 450,
@@ -351,10 +351,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 12,
-    name: "Inter Miami CF 2024/2025 Jersey",
+    name: "Inter Miami CF 2024/2025",
     slug: "inter-miami-cf",
     brand: "Adidas",
-    color: ["Black", "Pink"],
+    color: ["Black"],
     thumb: "/jersey-soccer/mls/inter-miami/1.webp",
     images: [
       "/jersey-soccer/mls/inter-miami/1.webp",

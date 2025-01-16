@@ -52,7 +52,11 @@ export function ProductItem({
                             size="sm"
                             skin="secondary"
                             leftSlot={<IoEyeOutline />}
-                            onClick={() => onQuickView?.(id)}
+                            onClick={(event) => {
+                              event.preventDefault();
+                              event.stopPropagation();
+                              onQuickView?.(id);
+                            }}
                             iconOnly
                           >
                             Quick View
@@ -68,7 +72,7 @@ export function ProductItem({
               )}
             </Motion>
             <Card.Body>
-              <Text size="sm" space={{ y: "xs" }}>
+              <Text size="sm" space={{ y: "xs" }} lineClamp={1}>
                 {name}
               </Text>
               <Text size="xs" skin="neutral" space={{ y: "md" }}>

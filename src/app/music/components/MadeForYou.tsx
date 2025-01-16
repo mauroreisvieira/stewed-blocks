@@ -1,8 +1,8 @@
 import React from "react";
 // UI Components
 import { Grid, Card, Text, Stack, AspectRatio, Skeleton } from "@stewed/react";
-// API
-import { useGetImages } from "../../../../../api/useGetImages";
+// Hooks
+import { useGetImages } from "../hooks/useGetImages";
 
 export function MadeForYou(): React.ReactElement {
   // Get images

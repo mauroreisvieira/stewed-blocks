@@ -3,6 +3,7 @@
 import React from "react";
 // UI Components
 import { Theme } from "@stewed/react";
+import { Header } from "./Header";
 
 export function Layout({
   children
@@ -14,6 +15,9 @@ export function Layout({
       tokens={{
         default: {
           color: {
+            "primary-foreground": "slate-900",
+            "primary-border": "slate-900",
+            "primary-border-hovered": "slate-800",
             "primary-background": "slate-900",
             "primary-background-hovered": "slate-800",
             "primary-background-pressed": "slate-800",
@@ -31,6 +35,7 @@ export function Layout({
         }
       }}
     >
+    <Header />
       {children}
     </Theme>
   );

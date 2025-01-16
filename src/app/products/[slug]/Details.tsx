@@ -52,7 +52,7 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
     () =>
       PRODUCTS.filter(
         ({ id, brand }) => product && product.id !== id && brand.includes(product.brand)
-      ).slice(1, 5),
+      ).slice(0, 5),
     [product]
   );
 
@@ -78,19 +78,31 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
 
               <Stack direction="column" gap="2xl">
                 <Stack gap="sm" grow>
-                  {product?.price.discount && (
-                    <Text size="3xl" weight="light" variation="line-through" skin="neutral-faded">
-                      {(product.price.value * product?.price.discount) / 100}
-                      {product.price.currency}
+                  {product?.price.discount ? (
+                    <>
+                      <Stack gap="sm">
+                        <Text size="3xl" weight="light" variation="line-through" skin="neutral-faded">
+                          {product?.price.value}
+                          {product?.price.currency}
+                        </Text>
+
+                        <Text size="3xl" weight="semi-bold">
+                          {product?.price.value -
+                            (product?.price.value * product?.price.discount) / 100}
+                          {product?.price.currency}
+                        </Text>
+                      </Stack>
+                    </>
+                  ) : (
+                    <Text size="3xl" weight="semi-bold">
+                      {product?.price.value}
+                      {product?.price.currency}
                     </Text>
                   )}
 
-                  <Text size="3xl" weight="semi-bold">
-                    {product?.price.value}
-                    {product?.price.currency}
-                  </Text>
-
-                  {product?.price.discount && <Tag size="xs">{product.price.discount}% of discount</Tag>}
+                  {!!product?.price.discount && (
+                    <Tag size="xs">{product.price.discount}% of discount</Tag>
+                  )}
                 </Stack>
 
                 {product?.rating && (

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 // UI Components
 import { Box, Card, Container, Hue, Text, Theme } from "@stewed/react";

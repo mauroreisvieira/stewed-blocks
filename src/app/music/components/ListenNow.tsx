@@ -1,8 +1,8 @@
 import React from "react";
 // UI Components
 import { Carousel, Button, Card, Text, Grid, Skeleton, AspectRatio } from "@stewed/react";
-// API
-import { useGetImages } from "../../../../../api/useGetImages";
+// Hooks
+import { useGetImages } from "../hooks/useGetImages";
 // Icons
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 

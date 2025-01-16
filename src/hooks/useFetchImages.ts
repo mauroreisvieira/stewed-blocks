@@ -21,7 +21,7 @@ export interface UnsplashResponse {
   results: UnsplashImage[];
 }
 
-interface UseGetImagesProps {
+interface UseFetchImagesProps {
   query: string;
   perPage?: number;
 }
@@ -29,7 +29,7 @@ interface UseGetImagesProps {
 export function useFetchImages({
   query,
   perPage = 8
-}: UseGetImagesProps): UseFetch<UnsplashResponse> {
+}: UseFetchImagesProps): UseFetch<UnsplashResponse> {
   // Use useQuery to fetch and cache data
   return useFetch<UnsplashResponse>(
     `https://api.unsplash.com/search/photos?query=${query}&client_id=${UNSPLASH_ACCESS_KEY}&per_page=${perPage}`
