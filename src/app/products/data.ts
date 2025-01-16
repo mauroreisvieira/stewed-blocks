@@ -190,7 +190,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 4,
     name: "Real Madrid Club de Fútbol 2024/2025",
-    slug: "real-madrid-club-de-fútbol",
+    slug: "real-madrid-club-de-futbol",
     brand: "Adidas",
     color: ["White"],
     thumb: "/jersey-soccer/la-liga/real-madrid/1.webp",
@@ -211,7 +211,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 5,
     name: "Real Sociedad de Fútbol 2024/2025",
-    slug: "real-sociedad-de-fútbol",
+    slug: "real-sociedad-de-futbol",
     brand: "Macron",
     color: ["White", "Blue"],
     thumb: "/jersey-soccer/la-liga/real-sociedad/1.webp",

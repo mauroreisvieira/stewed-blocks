@@ -51,8 +51,13 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
   const related = useMemo(
     () =>
       PRODUCTS.filter(
-        ({ id, brand }) => product && product.id !== id && brand.includes(product.brand)
-      ).slice(0, 5),
+        ({ id, brand, tag, color }) =>
+          product &&
+          product.id !== id &&
+          (brand.includes(product.brand) ||
+            product.tag === tag ||
+            color.some((value) => product.color.includes(value)))
+      ).slice(0, 4),
     [product]
   );
 
@@ -81,7 +86,12 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
                   {product?.price.discount ? (
                     <>
                       <Stack gap="sm">
-                        <Text size="3xl" weight="light" variation="line-through" skin="neutral-faded">
+                        <Text
+                          size="3xl"
+                          weight="light"
+                          variation="line-through"
+                          skin="neutral-faded"
+                        >
                           {product?.price.value}
                           {product?.price.currency}
                         </Text>
