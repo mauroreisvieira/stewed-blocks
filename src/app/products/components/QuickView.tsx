@@ -10,7 +10,6 @@ import {
   Group,
   Button,
   TextField,
-  Tag,
   Grid,
   Carousel,
   AspectRatio,
@@ -20,7 +19,7 @@ import {
 // Hooks
 import { useInput } from "@stewed/hooks";
 // Icons
-import { HiMinusSm, HiOutlinePlusSm, HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { HiMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 // Data
 import { PRODUCTS, SIZES } from "../data";
 
@@ -69,7 +68,7 @@ export function QuickView({ id, onClose }: QuickViewProps): React.ReactElement {
                   renderNext: (props) => (
                     <Button
                       skin="secondary"
-                      leftSlot={<HiChevronRight size={18} />}
+                      leftSlot={<Icon.ChevronRight size={18} />}
                       iconOnly
                       {...props}
                     />
