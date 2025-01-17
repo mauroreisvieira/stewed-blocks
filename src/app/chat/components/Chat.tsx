@@ -4,8 +4,8 @@ import React from "react";
 // UI Components
 import { Box, Card, Container, Hue, Text, Theme } from "@stewed/react";
 // Partials
-import { Suggestions } from "./components/Suggestions";
-import { Prompt } from "./components/Prompt";
+import { Suggestions } from "./Suggestions";
+import { Prompt } from "./Prompt";
 
 export function Chat(): React.ReactElement {
   return (

@@ -1,30 +1,17 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 // UI Components
-import {
-  Text,
-  Container,
-  Stack,
-  Box,
-  Grid,
-  Tag,
-  FormField,
-  Group,
-  Button,
-  TextField,
-  Carousel
-} from "@stewed/react";
+import { Text, Container, Stack, Box, Grid, Tag, Carousel } from "@stewed/react";
 // Partials
 import { Products } from "../components/Products";
 import { Reviews } from "../components/Reviews";
-// Hooks
-import { useInput } from "@stewed/hooks";
+import { Action } from "../components/Action";
 // Icons
-import { HiStar, HiMinusSm, HiOutlinePlusSm } from "react-icons/hi";
+import { HiStar } from "react-icons/hi";
 // Data
-import { PRODUCTS, SIZES, REVIEWS } from "../data";
+import { PRODUCTS, REVIEWS } from "../data";
 
 interface DetailsProps {
   slug: string;
@@ -38,15 +25,6 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
     () => REVIEWS.filter((review) => review.productsId === product?.id),
     [product?.id]
   );
-
-  // State to manage the selected size of the product
-  const [selectedSize, setSelectedSize] = useState("");
-
-  // State to manage the selected color of the product
-  const [selectedColor, setSelectedColor] = useState("");
-
-  // Using a custom hook `useInput` to manage the input value for the quantity.
-  const { value, setValue, onChange } = useInput<number>(1);
 
   const related = useMemo(
     () =>
@@ -141,114 +119,11 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
                   {product?.description}
                 </Text>
 
-                <Box space={{ y: "lg" }}>
-                  <Stack direction="column" gap="xl">
-                    <FormField>
-                      <FormField.Label htmlFor="quantity">Quantity</FormField.Label>
-                      <FormField.Control>
-                        <Box
-                          radius="md"
-                          borderColor="neutral-faded"
-                          borderStyle="solid"
-                          borderWidth={1}
-                          padding={{ block: "xxs", inline: "xxs" }}
-                        >
-                          <Group gap="xxs">
-                            <Button
-                              size="sm"
-                              skin="neutral"
-                              appearance="soft"
-                              leftSlot={<HiMinusSm size={16} />}
-                              onClick={() => setValue(Number(value) - 1)}
-                              disabled={value <= 1}
-                              iconOnly
-                            >
-                              Decrease
-                            </Button>
-
-                            <TextField
-                              id="quantity"
-                              skin={value > (product?.stock || 0) ? "critical" : "neutral"}
-                              size="sm"
-                              appearance="ghost"
-                              name="quantity"
-                              value={value}
-                              onChange={onChange}
-                              maxChars={Number(product?.stock).toString().length}
-                              alignment="center"
-                              pattern="\d*"
-                              autoComplete="off"
-                            />
-
-                            <Button
-                              size="sm"
-                              skin="neutral"
-                              appearance="soft"
-                              leftSlot={<HiOutlinePlusSm size={16} />}
-                              onClick={() => setValue(Number(value) + 1)}
-                              disabled={value === product?.stock}
-                              iconOnly
-                            >
-                              Increase
-                            </Button>
-                          </Group>
-                        </Box>
-                      </FormField.Control>
-                    </FormField>
-
-                    <FormField>
-                      <FormField.Label htmlFor="group">Size</FormField.Label>
-                      <FormField.Control>
-                        <Group gap="sm">
-                          {SIZES.map((value) => (
-                            <Button
-                              key={value}
-                              size="sm"
-                              disabled={!product?.sizes.includes(value)}
-                              tabIndex={value === selectedSize ? 0 : -1}
-                              pressed={value === selectedSize}
-                              skin={value === selectedSize ? "primary" : "neutral"}
-                              appearance={value === selectedSize ? "filled" : "outline"}
-                              onClick={() => setSelectedSize(value)}
-                            >
-                              {value}
-                            </Button>
-                          ))}
-                        </Group>
-                      </FormField.Control>
-                    </FormField>
-
-                    <FormField>
-                      <FormField.Label htmlFor="group">Pick Color</FormField.Label>
-                      <FormField.Control>
-                        <Group gap="sm">
-                          {product?.color.map((value) => (
-                            <Button
-                              key={value}
-                              size="sm"
-                              tabIndex={value === selectedColor ? 0 : -1}
-                              pressed={value === selectedColor}
-                              skin={value === selectedColor ? "primary" : "neutral"}
-                              appearance={value === selectedColor ? "filled" : "outline"}
-                              onClick={() => setSelectedColor(value)}
-                            >
-                              {value}
-                            </Button>
-                          ))}
-                        </Group>
-                      </FormField.Control>
-                    </FormField>
-                  </Stack>
-                </Box>
-
-                <Stack direction="row" gap="md">
-                  <Button appearance="outline" size="lg" fullWidth>
-                    Add to cart
-                  </Button>
-                  <Button skin="primary" size="lg" fullWidth>
-                    Checkout now
-                  </Button>
-                </Stack>
+                <Action
+                  sizes={product?.sizes}
+                  colors={product?.color}
+                  stock={product?.stock}
+                />
               </Stack>
             </Stack>
           </Grid>
