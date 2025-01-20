@@ -10,8 +10,7 @@ import {
   Grid,
   Carousel,
   AspectRatio,
-  Icon,
-  Hoverable
+  Icon
 } from "@stewed/react";
 import { Action } from "./Action";
 // Data
@@ -37,37 +36,32 @@ export function QuickView({ id, onClose }: QuickViewProps): React.ReactElement {
     >
       <Dialog.Body>
         <Grid cols={2}>
-          <Hoverable>
-            {({ isHovering }) => (
-              <Carousel
-                showNavigation={isHovering}
-                navigation={{
-                  renderPrev: (props) => (
-                    <Button
-                      skin="secondary"
-                      leftSlot={<Icon.ChevronLeft size={18} />}
-                      iconOnly
-                      {...props}
-                    />
-                  ),
-                  renderNext: (props) => (
-                    <Button
-                      skin="secondary"
-                      leftSlot={<Icon.ChevronRight size={18} />}
-                      iconOnly
-                      {...props}
-                    />
-                  )
-                }}
-              >
-                {product?.images?.map((image) => (
-                  <AspectRatio ratio="2:3" key={image}>
-                    <Image src={image} alt={product.name} width={600} height={600} />
-                  </AspectRatio>
-                ))}
-              </Carousel>
-            )}
-          </Hoverable>
+          <Carousel
+            navigation={{
+              renderPrev: (props) => (
+                <Button
+                  skin="secondary"
+                  leftSlot={<Icon.ChevronLeft size={18} />}
+                  iconOnly
+                  {...props}
+                />
+              ),
+              renderNext: (props) => (
+                <Button
+                  skin="secondary"
+                  leftSlot={<Icon.ChevronRight size={18} />}
+                  iconOnly
+                  {...props}
+                />
+              )
+            }}
+          >
+            {product?.images?.map((image) => (
+              <AspectRatio ratio="2:3" style={{ height: "100%" }}>
+                <Image src={image} alt={product.name} width={600} height={600} />
+              </AspectRatio>
+            ))}
+          </Carousel>
 
           <Box padding={{ block: "2xl", inline: "2xl" }}>
             <Stack direction="column" style={{ height: "100%" }}>

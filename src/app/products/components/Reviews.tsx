@@ -162,9 +162,10 @@ export function Reviews({ rate, reviews }: ReviewsProps): React.ReactElement {
       </Box>
 
       <Drawer
-        size="sm"
+        size="md"
         placement="bottom"
         open={open}
+        safeMargin="sm"
         onEscape={() => setOpen(false)}
         onClickOutside={() => setOpen(false)}
       >

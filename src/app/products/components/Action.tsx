@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // UI Components
-import { Box, FormField, TextField, Stack, Group, Button } from "@stewed/react";
+import { Theme, Box, FormField, TextField, Stack, Group, Button, useTheme } from "@stewed/react";
 // Hooks
 import { useInput } from "@stewed/hooks";
 // Icons
@@ -14,11 +14,9 @@ interface ActionProps {
   stock?: number;
 }
 
-export function Action({
-  sizes,
-  colors,
-  stock = 0
-}: ActionProps): React.ReactElement {
+export function Action({ sizes, colors, stock = 0 }: ActionProps): React.ReactElement {
+  const { tokens } = useTheme();
+
   // State to manage the selected size of the product
   const [selectedSize, setSelectedSize] = useState("");
 
@@ -26,10 +24,22 @@ export function Action({
   const [selectedColor, setSelectedColor] = useState("");
 
   // Using a custom hook `useInput` to manage the input value for the quantity.
-  const { value, setValue, onChange } = useInput<number>(1);
+  const [value, setValue] = useState(1);
 
   return (
-    <>
+    <Theme
+      cssScope="actions"
+      tokens={{
+        default: {
+          ...tokens?.default,
+          components: {
+            button: {
+              radius: "md"
+            }
+          }
+        }
+      }}
+    >
       <Stack direction="column" gap="4xl" grow>
         <Stack direction="column" gap="2xl" grow>
           <FormField>
@@ -105,11 +115,9 @@ export function Action({
                     appearance="ghost"
                     name="quantity"
                     value={value}
-                    onChange={onChange}
-                    maxChars={stock.toString().length}
+                    maxChars={stock.toString().length + 1}
                     alignment="center"
-                    pattern="\d*"
-                    autoComplete="off"
+                    readOnly
                   />
 
                   <Button
@@ -138,6 +146,6 @@ export function Action({
           </Button>
         </Stack>
       </Stack>
-    </>
+    </Theme>
   );
 }

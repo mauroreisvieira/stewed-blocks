@@ -29,7 +29,7 @@ export function Layout({
           },
           components: {
             button: {
-              radius: "md"
+              radius: "full"
             }
           }
         }

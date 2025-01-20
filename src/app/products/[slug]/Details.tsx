@@ -2,6 +2,7 @@
 
 import React, { useMemo } from "react";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 // UI Components
 import { Text, Container, Stack, Box, Grid, Tag, Carousel } from "@stewed/react";
 // Partials
@@ -20,6 +21,10 @@ interface DetailsProps {
 export function Details({ slug }: DetailsProps): React.ReactElement {
   // This prevents unnecessary recalculations when the component re-renders.
   const product = useMemo(() => PRODUCTS.find((product) => product.slug === slug), [slug]);
+
+  if (!product) {
+    notFound();
+  }
 
   const reviews = useMemo(
     () => REVIEWS.filter((review) => review.productsId === product?.id),
@@ -119,11 +124,7 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
                   {product?.description}
                 </Text>
 
-                <Action
-                  sizes={product?.sizes}
-                  colors={product?.color}
-                  stock={product?.stock}
-                />
+                <Action sizes={product?.sizes} colors={product?.color} stock={product?.stock} />
               </Stack>
             </Stack>
           </Grid>
