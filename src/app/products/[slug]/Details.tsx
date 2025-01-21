@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useMemo } from "react";
+
 import Image from "next/image";
 import { notFound } from "next/navigation";
 // UI Components
-import { Text, Container, Stack, Box, Grid, Tag, Carousel } from "@stewed/react";
+import { Text, Container, Stack, Box, Grid, Tag, Carousel, Button, Icon } from "@stewed/react";
 // Partials
 import { Products } from "../components/Products";
 import { Reviews } from "../components/Reviews";
@@ -49,7 +50,26 @@ export function Details({ slug }: DetailsProps): React.ReactElement {
       <Container screen="xl" alignment="center" padding={{ block: "7xl", inline: "lg" }}>
         <Box as="section" space={{ y: "8xl" }}>
           <Grid gap="2xl" cols={1} responsive={{ md: { cols: 2 } }}>
-            <Carousel>
+            <Carousel
+              navigation={{
+                renderPrev: (props) => (
+                  <Button
+                    skin="secondary"
+                    leftSlot={<Icon.ChevronLeft size={18} />}
+                    iconOnly
+                    {...props}
+                  />
+                ),
+                renderNext: (props) => (
+                  <Button
+                    skin="secondary"
+                    leftSlot={<Icon.ChevronRight size={18} />}
+                    iconOnly
+                    {...props}
+                  />
+                )
+              }}
+            >
               {product?.images?.map((image) => (
                 <Image key={image} src={image} alt={product.name} width={600} height={600} />
               ))}

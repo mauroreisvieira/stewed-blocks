@@ -5,7 +5,11 @@ import { Box, Container, Stack, Text, Badge, Button } from "@stewed/react";
 // Icons
 import { AiOutlineShopping } from "react-icons/ai";
 
-export function Header(): React.ReactElement {
+interface HeaderProps {
+  onCartClick: () => void;
+}
+
+export function Header({ onCartClick }: HeaderProps): React.ReactElement {
   return (
     <Box
       style={{ position: "sticky", top: 0, zIndex: 10 }}
@@ -28,6 +32,7 @@ export function Header(): React.ReactElement {
               <Button
                 size="sm"
                 appearance="ghost"
+                onClick={onCartClick}
                 leftSlot={<AiOutlineShopping size={18} />}
                 iconOnly
               >

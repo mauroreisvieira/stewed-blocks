@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // Next
 import Link from "next/link";
 // UI Components
-import { Box, Grid, Stack, Text } from "@stewed/react";
+import { Theme, Box, Grid, Stack, Text, useTheme } from "@stewed/react";
 // Partials
 import { ProductItem, type ProductItemProps } from "./ProductItem";
 import { QuickView } from "./QuickView";
@@ -12,10 +12,25 @@ interface ProductsProps {
 }
 
 export function Products({ data }: ProductsProps): React.ReactElement {
+  const { tokens } = useTheme();
+
   const [id, setId] = useState<number | undefined>(undefined);
 
   return (
     <>
+      <Theme
+        cssScope="product-item"
+        tokens={{
+          default: {
+            ...tokens?.default,
+            components: {
+              button: {
+                radius: "full"
+              }
+            }
+          }
+        }}
+      >
         <Box fullHeight>
           {data.length ? (
             <Grid
@@ -40,7 +55,7 @@ export function Products({ data }: ProductsProps): React.ReactElement {
             </Box>
           )}
         </Box>
-      
+      </Theme>
       <QuickView id={id} onClose={() => setId(undefined)} />
     </>
   );

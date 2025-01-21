@@ -1,15 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 // UI Components
 import { Theme } from "@stewed/react";
 import { Header } from "./Header";
+import { Cart } from "./Cart";
 
-export function Layout({
-  children
-}: {
-  children: React.ReactNode;
-}): React.ReactElement {
+export function Layout({ children }: { children: React.ReactNode }): React.ReactElement {
+  const [open, setOpen] = useState(false);
   return (
     <Theme
       tokens={{
@@ -29,14 +27,15 @@ export function Layout({
           },
           components: {
             button: {
-              radius: "full"
+              radius: "md"
             }
           }
         }
       }}
     >
-    <Header />
+      <Header onCartClick={() => setOpen(true)} />
       {children}
+      <Cart open={open} onClose={() => setOpen(false)} />
     </Theme>
   );
 }

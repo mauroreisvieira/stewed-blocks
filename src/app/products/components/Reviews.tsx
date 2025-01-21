@@ -166,18 +166,22 @@ export function Reviews({ rate, reviews }: ReviewsProps): React.ReactElement {
         placement="bottom"
         open={open}
         safeMargin="sm"
+        onClose={() => setOpen(false)}
         onEscape={() => setOpen(false)}
         onClickOutside={() => setOpen(false)}
       >
-        <Drawer.Body>
+        <Drawer.Header>
           <Container screen="sm" alignment="center">
             <Text size="lg" weight="semi-bold" space={{ y: "xs" }}>
               Drop your thoughts
             </Text>
-            <Text size="sm" skin="neutral" space={{ y: "lg" }}>
+            <Text size="sm" skin="neutral">
               Got something to say about this? Share your take with everyone.
             </Text>
-
+          </Container>
+        </Drawer.Header>
+        <Drawer.Body>
+          <Container screen="sm" alignment="center">
             <Box space={{ y: "2xl" }}>
               <Stack>
                 {Array.from({ length: 5 }).map((_, index) => (

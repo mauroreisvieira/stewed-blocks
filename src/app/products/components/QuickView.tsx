@@ -1,17 +1,7 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 // UI Components
-import {
-  Text,
-  Dialog,
-  Stack,
-  Box,
-  Button,
-  Grid,
-  Carousel,
-  AspectRatio,
-  Icon
-} from "@stewed/react";
+import { Text, Dialog, Stack, Box, Button, Grid, Carousel, AspectRatio, Icon } from "@stewed/react";
 import { Action } from "./Action";
 // Data
 import { PRODUCTS } from "../data";
@@ -41,6 +31,7 @@ export function QuickView({ id, onClose }: QuickViewProps): React.ReactElement {
               renderPrev: (props) => (
                 <Button
                   skin="secondary"
+                  size="sm"
                   leftSlot={<Icon.ChevronLeft size={18} />}
                   iconOnly
                   {...props}
@@ -49,6 +40,7 @@ export function QuickView({ id, onClose }: QuickViewProps): React.ReactElement {
               renderNext: (props) => (
                 <Button
                   skin="secondary"
+                  size="sm"
                   leftSlot={<Icon.ChevronRight size={18} />}
                   iconOnly
                   {...props}
@@ -57,7 +49,7 @@ export function QuickView({ id, onClose }: QuickViewProps): React.ReactElement {
             }}
           >
             {product?.images?.map((image) => (
-              <AspectRatio ratio="2:3" style={{ height: "100%" }}>
+              <AspectRatio ratio="2:3">
                 <Image src={image} alt={product.name} width={600} height={600} />
               </AspectRatio>
             ))}
