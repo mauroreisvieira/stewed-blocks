@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 // UI Components
-import { Box, FormField, Text, Stack, Group, Button } from "@stewed/react";
-// Icons
-import { HiMinusSm, HiOutlinePlusSm } from "react-icons/hi";
+import { FormField, Stack, Group, Button } from "@stewed/react";
+import { Quantity } from "./Quantity";
 // Data
 import { SIZES } from "../data";
 
@@ -18,9 +17,6 @@ export function Action({ sizes, colors, stock = 0 }: ActionProps): React.ReactEl
 
   // State to manage the selected color of the product
   const [selectedColor, setSelectedColor] = useState("");
-
-  // Using a custom hook `useInput` to manage the input value for the quantity.
-  const [value, setValue] = useState(1);
 
   return (
     <Stack direction="column" gap="4xl" grow>
@@ -71,45 +67,7 @@ export function Action({ sizes, colors, stock = 0 }: ActionProps): React.ReactEl
         <FormField>
           <FormField.Label htmlFor="quantity">Quantity</FormField.Label>
           <FormField.Control>
-            <Box
-              radius="md"
-              borderColor="neutral-faded"
-              borderStyle="solid"
-              borderWidth={1}
-              padding={{ block: "xxs", inline: "xxs" }}
-            >
-              <Group gap="xxs" loop>
-                <Button
-                  size="sm"
-                  skin="neutral"
-                  appearance="soft"
-                  leftSlot={<HiMinusSm size={16} />}
-                  onClick={() => setValue(Number(value) - 1)}
-                  disabled={value <= 1}
-                  iconOnly
-                >
-                  Decrease
-                </Button>
-
-                <Box as="span" padding={{ inline: "lg", block: "xs" }}>
-                <Text as="span" size="sm" skin={value > stock ? "critical" : "default"} alignment="center">
-                  {value}
-                </Text>
-                </Box>
-
-                <Button
-                  size="sm"
-                  skin="neutral"
-                  appearance="soft"
-                  leftSlot={<HiOutlinePlusSm size={16} />}
-                  onClick={() => setValue(Number(value) + 1)}
-                  disabled={value === stock}
-                  iconOnly
-                >
-                  Increase
-                </Button>
-              </Group>
-            </Box>
+            <Quantity max={stock} />
           </FormField.Control>
         </FormField>
       </Stack>

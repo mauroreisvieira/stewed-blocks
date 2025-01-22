@@ -23,7 +23,8 @@ export function Layout({ children }: { children: React.ReactNode }): React.React
             "secondary-background": "slate-100",
             "secondary-background-hovered": "slate-200",
             "secondary-background-pressed": "slate-200",
-            "secondary-foreground-on-background": "slate-800"
+            "secondary-foreground-on-background": "slate-800",
+            "background-backdrop": "rgb(100 100 100 / 70%)"
           },
           components: {
             button: {
